@@ -3,10 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const {signIn,googleSignIn,githubSignIn} = useContext(AuthContext)
+    const {signIn,googleSignIn} = useContext(AuthContext)
     const location = useLocation();
 
     const navigate = useNavigate();
