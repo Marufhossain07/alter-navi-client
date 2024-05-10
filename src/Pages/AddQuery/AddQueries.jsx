@@ -18,7 +18,7 @@ const AddQueries = () => {
         const currentTimeAndDate = Date.now();
         const newDate = new Date(currentTimeAndDate)
         const time = newDate.toLocaleString()
-        const info = {
+        const userData = {
             email,
             name,
             image,
@@ -27,7 +27,7 @@ const AddQueries = () => {
 
         }
         
-        const newQuery = {product, photo, brand,details,title, info};
+        const newQuery = {product, photo, brand,details,title, userData};
         console.log(newQuery)
     }
     return (
