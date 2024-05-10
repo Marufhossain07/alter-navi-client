@@ -24,7 +24,7 @@ const Footer = () => {
                             </div>
                         </div>
                         <form>
-                            <h6 className="footer-title text-black font-inter opacity-100 font-bold">Newsletter</h6>
+                            <h6 className="footer-title dark:text-gray-900 font-inter opacity-100 font-bold">Newsletter</h6>
                             <fieldset className="form-control w-80">
                                 <label className="label">
                                     <span className="label-text font-inter">Enter your email address</span>
