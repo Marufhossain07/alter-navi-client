@@ -10,7 +10,7 @@ const Error = () => {
                     </h2>
                     <p className="text-2xl font-semibold md:text-3xl">Sorry, we couldn&#39;t find this page.</p>
                     <p className="mt-4 mb-8 dark:text-gray-600">But don&#39;t worry, you can find plenty of other things on our homepage.</p>
-                    <Link to="/"><a rel="noopener noreferrer" href="#" className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Back to homepage</a></Link>
+                    <Link to="/"><a rel="noopener noreferrer" href="#" className="px-8 py-3 font-semibold rounded bg-[#669bbc] dark:bg-violet-600 dark:text-gray-50">Back to homepage</a></Link>
                 </div>
             </div>
         </section>

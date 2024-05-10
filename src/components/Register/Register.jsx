@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -11,11 +11,15 @@ const Register = () => {
     const { createUser,
         googleSignIn,
         logOut } = useContext(AuthContext)
+        const navigate = useNavigate()
 
     const signUpWithGoogle = () => {
         googleSignIn()
             .then(result => {
                 toast('Successfully Sign Up')
+                
+                    navigate('/')
+
 
             })
             .catch(error => {
@@ -75,14 +79,15 @@ const Register = () => {
                     autoClose: 2500,
                 }
                 );
-                logOut()
+                
 
                 updateProfile(result.user, {
                     displayName: name,
                     photoURL: photo
                 })
+                logOut()
                 setTimeout(() => {
-                    Navigate('/login')
+                    navigate('/login')
                 }, 2000)
 
 

@@ -26,10 +26,12 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/queries">Queries</NavLink></li>
-        <li><NavLink to="/recommendations-for-me">Recommendations
+        {
+            user &&  <><li><NavLink to="/recommendations-for-me">Recommendations
             For Me</NavLink></li>
         <li><NavLink to="/my-queries">My Queries</NavLink></li>
-        <li><NavLink to="/my-recommendations">My Recommendations</NavLink></li>
+        <li><NavLink to="/my-recommendations">My Recommendations</NavLink></li></>
+        }
     </>
     return (
         <div className="bg-[#fdf0d5] dark:bg-black">
@@ -43,14 +45,14 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-4xl font-sedan lg:pl-0 text-[#003049] dark:text-red-400">Alter<span className="text-[#669bbc]">Navi</span></a>
+                    <a className="btn btn-ghost text-4xl font-sedan lg:pl-0 text-[#003049]">Alter<span className="text-[#669bbc]">Navi</span></a>
                 </div>
                 <div id="nav" className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {links}
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end gap-1">
                     <label className="swap swap-rotate">
 
                         {/* this hidden checkbox controls the state */}
