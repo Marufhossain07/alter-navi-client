@@ -43,8 +43,10 @@
     height: 100%;
     object-fit: cover;
 }
-.add-banner{
+
+.add-banner {
     background-image: url(../src/assets/addbanner.jfif);
     background-size: cover;
     background-position: center;
 }
+

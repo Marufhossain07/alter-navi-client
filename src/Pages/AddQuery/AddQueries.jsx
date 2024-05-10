@@ -6,86 +6,63 @@ const AddQueries = () => {
     const handleAddItems = e =>{
         e.preventDefault();
         const form = e.target;
-        const name = form.name.value
-        const item = form.item.value
-        const sub = form.sub.value;
-        console.log(sub)
-        const description = form.description.value;
-        const price = form.price.value;
-        const rating = form.rating.value;
-        const customization = form.customization.value;
-        const time = form.time.value;
-        const stock = form.stock.value;
-        const email = form.email.value;
+        const product = form.product.value
+        const brand = form.brand.value
+        const title = form.title.value
+        const details = form.details.value
         const photo = form.photo.value;
+        const email = user.email;
+        const name = user.displayName;
+        const image = user.photoURL;
+        const recommendationsCount = 0;
+        const currentTimeAndDate = Date.now();
+        const newDate = new Date(currentTimeAndDate)
+        const time = newDate.toLocaleString()
+        const info = {
+            email,
+            name,
+            image,
+            time,
+            recommendationsCount
 
-        const newItem = {item,sub,description,price,rating,customization,time,stock,email,name,photo};
+        }
         
+        const newQuery = {product, photo, brand,details,title, info};
+        console.log(newQuery)
     }
     return (
-        <div>
-            <section className="p-6 bg-gray-800 text-gray-50">
+        <div className="bg-[#003049] ">
+            <section className="p-6 text-gray-50">
                 <form onSubmit={handleAddItems} className="container flex flex-col mx-auto space-y-12">
                     <fieldset className=" p-6 rounded-md shadow-sm ">
                         <div className="space-y-2 col-span-full lg:col-span-1">
-                            <h2 className="text-4xl text-center font-pop font-semibold pb-5">Add Craft Item</h2>
+                            <h2 className="text-4xl text-center font-sedan font-semibold pb-5">Add Queries</h2>
 
 
                         </div>
                         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                             <div className="col-span-full sm:col-span-3">
-                                <label className="text-sm">Item Name</label>
-                                <input name="item" type="text" placeholder="Item Name" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
-                            </div>
-                            <div className="col-span-full flex flex-col sm:col-span-3">
-                                <label className="text-sm">Sub-Category Name</label>
-                                <select name="sub" className="select h-full text-black select-info border-[#2b2d42]">
-                    <option disabled selected>Select Sub-Category</option>
-                    <option>CardMaking</option>
-                    <option>Scrapbooking</option>
-                    <option>Paper Quilling & Origami</option>
-                    <option>Glass Painting</option>
-                    <option>Glass Dying & Staining</option>
-                    <option>Lampworking</option>
-                </select>
-                            </div>
-                            <div className="col-span-full flex flex-col text-black gap-1 sm:col-span-3">
-                                <label htmlFor="email" className="text-sm text-black">Short Description</label>
-                                <textarea name='description' placeholder="Write here" className="textarea text-red textarea-bordered textarea-xs w-full " ></textarea>
+                                <label className="text-sm">Product Name</label>
+                                <input name="product" type="text" placeholder="Product Name" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
                             </div>
                             <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="email" className="text-sm">Price</label>
-                                <input name="price" type="text" placeholder="Price" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
+                                <label className="text-sm">Product Brand</label>
+                                <input name="brand" type="text" placeholder="Product Brand" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
+                            </div>
+                            
+                            <div className="col-span-full sm:col-span-3">
+                                <label htmlFor="city" className="text-sm">Product Image</label>
+                                <input name="photo" type="text" placeholder="Enter Product Image URL" className="w-full rounded-md p-3 focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
                             </div>
                             <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="email" className="text-sm">Rating</label>
-                                <input name="rating" type="text" placeholder="Rating" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
+                                <label className="text-sm">Query Title</label>
+                                <input name="title" type="text" placeholder="Query Title" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
                             </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="email" className="text-sm">Customization</label>
-                                <input name="customization" type="text" placeholder="Customization" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
+                            <div className="col-span-full flex flex-col  gap-1 sm:col-span-3">
+                                <label htmlFor="email" className="text-sm "> Boycotting Reason Details</label>
+                                <textarea name='details' placeholder="Product Brand" className="textarea text-red text-black textarea-bordered textarea-xs w-full " ></textarea>
                             </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="email" className="text-sm">Processing Time</label>
-                                <input name="time" type="text" placeholder="Processing Time" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
-                            </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="email" className="text-sm">Stock Status</label>
-                                <input name="stock" type="text" placeholder="Stock Status" className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
-                            </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="email" className="text-sm">User Email</label>
-                                <input name="email" type="text" defaultValue={user?.email}  className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900  border-gray-700" />
-                            </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="email" className="text-sm">User Name</label>
-                                <input name="name" type="text" defaultValue={user?.displayName}  className="w-full p-3 rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
-                            </div>
-
-                            <div className="col-span-full">
-                                <label htmlFor="city" className="text-sm">Photo</label>
-                                <input name="photo" type="text" placeholder="Enter photo URL" className="w-full rounded-md p-3 focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700" />
-                            </div>
+                            
                             <div className="col-span-full">
                                 <input className="btn text-white w-full p-3 text-center bg-[#2b2d42]" type="submit" value="Add Item" />
                             </div>
