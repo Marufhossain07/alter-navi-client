@@ -44,9 +44,21 @@
     object-fit: cover;
 }
 
-.add-banner {
-    background-image: url(../src/assets/addbanner.jfif);
+.banner2 {
+    background-image: linear-gradient(135deg, rgba(253, 240, 213, 0.5), rgba(0, 48, 73, 0.5) ),url(../src/assets/banner1.jfif);
+    background-repeat: no-repeat;
     background-size: cover;
+}
+.banner1 {
+    background-image: linear-gradient(135deg, rgba(253, 240, 213, 0.5), rgba(0, 48, 73, 0.5) ),url(../src/assets/banner2.jfif);
+    background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+}
+.banner3 {
+    background-image: linear-gradient(135deg, rgba(253, 240, 213, 0.5), rgba(0, 48, 73, 0.5) ),url(../src/assets/banner3.jfif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 

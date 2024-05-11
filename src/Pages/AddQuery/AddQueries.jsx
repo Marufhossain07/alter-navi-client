@@ -1,8 +1,15 @@
-import { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
+import { useNavigate } from "react-router-dom";
+
 
 const AddQueries = () => {
-    const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const {user} = useAuth()
+    const axiosCommon = useAxiosCommon()
+
     const handleAddItems = e =>{
         e.preventDefault();
         const form = e.target;
@@ -17,18 +24,25 @@ const AddQueries = () => {
         const recommendationsCount = 0;
         const currentTimeAndDate = Date.now();
         const newDate = new Date(currentTimeAndDate)
-        const time = newDate.toLocaleString()
-        const userData = {
-            email,
-            name,
-            image,
-            time,
-            recommendationsCount
-
-        }
+        const time = newDate.toLocaleString();
         
-        const newQuery = {product, photo, brand,details,title, userData};
-        console.log(newQuery)
+        const newQuery = {product, photo, brand,details,title,email, name, image, recommendationsCount, time};
+         axiosCommon.post('/add-query', newQuery)
+            .then(res=>{
+                console.log(res.data);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Query has been added",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                navigate('/my-queries')
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+
     }
     return (
         <div className="bg-[#003049] ">

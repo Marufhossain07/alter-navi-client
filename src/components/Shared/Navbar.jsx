@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+
+import useAuth from "../../hooks/useAuth";
 
 
 
 const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
-    const {user,logOut} = useContext(AuthContext)
+    const {user,logOut} = useAuth()
 
 
     useEffect(() => {
