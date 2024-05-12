@@ -25,7 +25,7 @@ const MyQuery = ({ query }) => {
                 <div className="flex  flex-col justify-end gap-5">
         <Link className="text-right" to={`/queries/${_id}`}><button className="btn primary-bg  text-white"><FcViewDetails className="text-2xl " /> Details</button></Link>
         <Link className="text-right" to={`/queries/${_id}`}><button className="btn primary-bg  text-white"><GrUpdate className="text-xl " /> Update</button></Link>
-        <Link className="text-right" to={`/queries/${_id}`}><button className="btn primary-bg  text-white"><MdDeleteForever className="text-2xl " /> Details</button></Link>
+        <Link className="text-right" to={`/queries/${_id}`}><button className="btn primary-bg  text-white"><MdDeleteForever className="text-2xl " /> Delete</button></Link>
 
                 </div>
             </div>

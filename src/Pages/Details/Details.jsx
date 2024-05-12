@@ -3,7 +3,8 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Recommendatio from "./Recommendatio";
 
 
 const Details = () => {
@@ -14,13 +15,18 @@ const Details = () => {
     const query = useLoaderData();
     const { _id, product, photo, brand, details, title, name, image, time, recommendationsCount, email } = query;
 
-    const getData = async()=>{
-        const {data} = await axiosSecure('')
+    useEffect(() => {
+        getData()
+
+    }, [user])
+    const getData = async () => {
+        const { data } = await axiosSecure(`/recommendations/${_id}`)
+        setRecommendations(data)
     }
 
-    const handleAddRecommendation = async e =>{
+    const handleAddRecommendation = async e => {
         e.preventDefault()
-        if(user?.email === email){
+        if (user?.email === email) {
             return toast.error("You can't recommend in your own queries")
         }
         const form = e.target;
@@ -32,17 +38,17 @@ const Details = () => {
         const queryId = _id;
         const recName = user.displayName;
         const recEmail = user.email;
-        const newRecommendation = {recTitle, recProduct, recPhoto, recReason, currentTime, title, product, name , email , queryId, recName, recEmail};
+        const newRecommendation = { recTitle, recProduct, recPhoto, recReason, currentTime, title, product, name, email, queryId, recName, recEmail };
 
         await axiosSecure.post('/recommend', newRecommendation)
-        .then(res=>{
-            toast.success("Recommendation has been added");
-            navigate('/my-recommendations')
-        })
-        .catch(err=>{
-            toast.warning(err.response)
-            form.reset();
-        })
+            .then(res => {
+                toast.success("Recommendation has been added");
+                navigate('/my-recommendations')
+            })
+            .catch(err => {
+                toast.warning(err.response)
+                form.reset();
+            })
 
     }
     return (
@@ -86,7 +92,12 @@ const Details = () => {
                 </div>
             </div>
             <div>
-            <h3 className="text-3xl  border-b-4 pb-5 border-[#669bbc] my-5 font-sedan font-semibold">Recommendations: {recommendationsCount}</h3>
+                <h3 className="text-3xl  border-b-4 pb-5 border-[#669bbc] my-5 font-sedan font-semibold">Recommendations: {recommendationsCount}</h3>
+                <div className="flex flex-col gap-5">
+                    {
+                        recommendations.map(recommendation=> <Recommendatio key={recommendation._id} recommendation={recommendation}></Recommendatio>)
+                    }
+                </div>
             </div>
             <div className="mb-10">
                 <h3 className="text-3xl  border-b-4 pb-5 border-[#669bbc] my-5 font-sedan font-semibold">Please write a Recommendations here</h3>
