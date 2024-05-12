@@ -24,7 +24,7 @@ const Banner = () => {
                 <SwiperSlide className='banner1 rounded-lg'><div className='text-left space-y-5 px-20 py-20'>
                     <h3 className='text-5xl text-black  font-sedan font-semibold'>Explore a World of Questions <br /> and <Typewriter
                         words={['Insights', 'Discoveries', 'Wisdom', 'Observations!']}
-                        loop={5}
+                        loop= {true}
                         cursor
                         cursorStyle='_'
                         typeSpeed={70}

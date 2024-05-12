@@ -61,4 +61,9 @@
     background-position: center;
     background-size: cover;
 }
+#card:hover {
+    transform: scale(1.05);
+    background-color: #669bbc;
+    border: 2px solid #003049;
+}
 

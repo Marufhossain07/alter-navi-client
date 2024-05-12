@@ -5,7 +5,12 @@ import { Link } from 'react-router-dom';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import MyQuery from './MyQuery';
+import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useEffect } from 'react';
 const MyQueries = () => {
+    const { user } = useAuth()
+    const axiosSecure = useAxiosSecure();
     const [queries, setQueries] = useState([])
     const defaultOptions = {
         loop: true,
@@ -23,8 +28,20 @@ const MyQueries = () => {
             preserveAspectRatio: "xMidYMid slice"
         }
     };
+
+    useEffect(()=>{
+        data()
+    },[user])
+
+    const data = async ()=>[
+        await axiosSecure(`/my-queries/${user?.email}`)
+        .then(res=>{
+            console.log(res.data)
+            setQueries(res.data)
+        })
+    ]
     return (
-        <div>
+        <div className='max-w-[1140px] mx-auto'>
             <div>
                 <section className="dark:bg-gray-100 bg-[#003049] dark:text-gray-800">
                     <div className="max-w-[1140px]  flex flex-col  mx-auto lg:flex-row">
@@ -47,10 +64,10 @@ const MyQueries = () => {
                     <h3 className='font-sedan font-semibold text-4xl  mt-10'>My Queries</h3>
                     <p className='font-inter font-medium'>Manage your inquiries effortlessly with our &apos;My Queries&apos; section,keeping track of all <br /> your questions and requests in one convenient place.</p>
                 </div>
-                <div>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 pt-10 gap-5'>
                     {
-                        queries.length > 0 ? queries.map(query => <MyQuery key={query._id} query={query}></MyQuery>) : <>
-                            <div className="hero">
+                        queries?.length > 0 ? queries.map(query => <MyQuery key={query._id} query={query}></MyQuery>) : <>
+                            <div className="hero col-span-3">
                                 <div className="hero-content flex-col lg:flex-row">
                                     <Lottie
                                         options={options}
