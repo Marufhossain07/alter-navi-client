@@ -5,6 +5,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { updateProfile } from "firebase/auth";
 import 'react-toastify/dist/ReactToastify.css';
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -12,12 +13,12 @@ const Register = () => {
         googleSignIn,
         logOut } = useContext(AuthContext)
         const navigate = useNavigate()
-
+        const axiosCommon = useAxiosCommon();
     const signUpWithGoogle = () => {
         googleSignIn()
-            .then(result => {
+            .then(async result => {
                 toast('Successfully Sign Up')
-                
+                const {data} = await axiosCommon.post('/jwt', {email: result?.user?.email})
                     navigate('/')
 
 
@@ -72,7 +73,7 @@ const Register = () => {
 
         createUser(email, password)
 
-            .then((result) => {
+            .then(async(result) => {
                 console.log(result.user)
                 toast('You Are Successfully Sign Up', {
                     position: "top-center",
@@ -81,10 +82,11 @@ const Register = () => {
                 );
                 
 
-                updateProfile(result.user, {
+                updateProfile(result?.user, {
                     displayName: name,
                     photoURL: photo
                 })
+                
                 logOut()
                 setTimeout(() => {
                     navigate('/login')

@@ -21,7 +21,7 @@ const Home = () => {
                 <p>Stay updated with the latest questions. Explore a dynamic feed of <br /> recent queries from users worldwide.</p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 pt-7 gap-5">
                     {
-                        queries.map(query=> <Query key={query._id} query={query}></Query>)
+                        queries.slice(0,6).map(query=> <Query key={query._id} query={query}></Query>)
                     }
                 </div>
                 <div>
