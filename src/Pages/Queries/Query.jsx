@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Query = ({ query }) => {
     const { _id, product, photo, brand, details, title, name, image, time, recommendationsCount } = query;
-    console.log(query)
+
 
     return (
         <div className="max-w-2xl overflow-hidden p-6 bg-white rounded-lg border border-[#669bbc] shadow-md dark:bg-gray-800">
