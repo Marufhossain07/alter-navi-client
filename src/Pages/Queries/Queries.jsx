@@ -21,7 +21,19 @@ const Queries = () => {
         e.preventDefault()
         setSearch(searchText)
     }
-
+    const handleReset = ()=>{
+        setSearch('')
+    }
+    
+    const handleGrid = () =>{
+       setToggle(!toggle)
+       if(toggle){
+        setGridLayout('grid-cols-2')
+       }
+       else{
+        setGridLayout('grid-cols-3')
+       }
+    }
     return (
         <div className="max-w-[1140px] mx-auto">
             <h3 className="text-3xl text-center  border-b-4 pb-5 border-[#669bbc] my-5 font-sedan font-semibold">Queries</h3>
