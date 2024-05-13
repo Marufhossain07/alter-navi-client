@@ -4,8 +4,10 @@ import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 
-const MyQuery = ({ query }) => {
-    const { _id,product, photo, brand, details, title, name, image, time } = query;
+const MyQuery = ({ query,handleDelete }) => {
+    const { _id, product, photo, brand, details, title, name, image, time } = query;
+
+    
 
     return (
         <div className="w-full overflow-hidden border bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -23,9 +25,9 @@ const MyQuery = ({ query }) => {
                 <p className="py-2 text-gray-700 dark:text-gray-400">{time}</p>
 
                 <div className="flex  flex-col justify-end gap-5">
-        <Link className="text-right" to={`/queries/${_id}`}><button className="btn primary-bg  text-white"><FcViewDetails className="text-2xl " /> Details</button></Link>
-        <Link className="text-right" to={`/queries/${_id}`}><button className="btn primary-bg  text-white"><GrUpdate className="text-xl " /> Update</button></Link>
-        <Link className="text-right" to={`/queries/${_id}`}><button className="btn primary-bg  text-white"><MdDeleteForever className="text-2xl " /> Delete</button></Link>
+                    <Link className="text-right" to={`/queries/${_id}`}><button className="btn primary-bg  text-white"><FcViewDetails className="text-2xl " /> Details</button></Link>
+                    <Link to={`/update/${_id}`} className="text-right"><button className="btn primary-bg  text-white"><GrUpdate className="text-xl " /> Update</button></Link>
+                    <Link className="text-right"><button onClick={() => handleDelete(_id)} className="btn primary-bg  text-white"><MdDeleteForever className="text-2xl " /> Delete</button></Link>
 
                 </div>
             </div>

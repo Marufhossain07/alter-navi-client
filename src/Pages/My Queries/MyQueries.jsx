@@ -5,10 +5,13 @@ import { Link } from 'react-router-dom';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import MyQuery from './MyQuery';
+import Swal from 'sweetalert2'
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useEffect } from 'react';
+import useAxiosCommon from '../../hooks/useAxiosCommon';
 const MyQueries = () => {
+    const axiosCommon = useAxiosCommon();
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure();
     const [queries, setQueries] = useState([])
@@ -33,13 +36,43 @@ const MyQueries = () => {
         data()
     },[user])
 
-    const data = async ()=>[
+    const data = async ()=>{
         await axiosSecure(`/my-queries/${user?.email}`)
         .then(res=>{
-            console.log(res.data)
             setQueries(res.data)
         })
-    ]
+    }
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                axiosCommon.delete(`/my-queries/${id}`)
+                    .then(res => {
+                        if (res?.data?.deletedCount > 0) {
+
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                        const remainingData = queries.filter(data => data._id !== id)
+                        setQueries(remainingData)
+                    })
+            }
+            console.log(id)
+        });
+    }
+
     return (
         <div className='max-w-[1140px] mx-auto'>
             <div>
@@ -66,7 +99,7 @@ const MyQueries = () => {
                 </div>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 pt-10 gap-5'>
                     {
-                        queries?.length > 0 ? queries.map(query => <MyQuery key={query._id} query={query}></MyQuery>) : <>
+                        queries?.length > 0 ? queries.map(query => <MyQuery key={query._id} query={query} handleDelete={handleDelete}></MyQuery>) : <>
                             <div className="hero col-span-3">
                                 <div className="hero-content flex-col lg:flex-row">
                                     <Lottie

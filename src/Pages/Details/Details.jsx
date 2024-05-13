@@ -1,7 +1,7 @@
 
 import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import Recommendatio from "./Recommendatio";
@@ -79,7 +79,7 @@ const Details = () => {
                 </div>
                 <div>
                     <h3 className="text-3xl font-sedan font-semibold mb-5">Posted By</h3>
-                    <div className="flex flex-col justify-center max-w-xs p-6 shadow-md border-t-4 border-[#669bbc]   sm:px-12 dark:bg-gray-50 dark:text-gray-800">
+                    <div className="flex flex-col justify-center p-6 shadow-md border-t-4 border-[#669bbc]   sm:px-12 dark:bg-gray-50 dark:text-gray-800">
 
                         <img src={image} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
                         <div className="space-y-4 text-center divide-y dark:divide-gray-300">
@@ -135,6 +135,18 @@ const Details = () => {
                     </section>
                 </div>
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 };

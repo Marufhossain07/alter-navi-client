@@ -1,53 +1,21 @@
 import { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { MdDeleteForever } from "react-icons/md";
-import Swal from 'sweetalert2'
+import useAuth from "../../hooks/useAuth";
 import empty from '../../lotties/empty box.json';
-import useAxiosCommon from "../../hooks/useAxiosCommon";
 import Lottie from "react-lottie";
-import { Link } from "react-router-dom";
-const MyRecommendations = () => {
-    const axiosCommon = useAxiosCommon();
+const RecommendationsForMe = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure()
-    const [recommendations, setRecommendations] = useState([]);
+    const [recData, setRecData] = useState([]);
+    console.log(recData);
     useEffect(() => {
         getData()
 
     }, [user])
+
     const getData = async () => {
-        const { data } = await axiosSecure(`/my-recommendations/${user?.email}`)
-        setRecommendations(data)
-    }
-
-    const handleDelete = (id, _id) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-
-            if (result.isConfirmed) {
-                axiosCommon.delete(`/my-recommendations/${id}/${_id}`)
-                    .then(res => {
-                        if (res?.data?.deletedCount > 0) {
-
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                        }
-                        const remainingData = recommendations.filter(data => data._id !== _id)
-                        setRecommendations(remainingData)
-                    })
-            }
-        });
+        const { data } = await axiosSecure(`/recommendations-for-me/${user?.email}`)
+        setRecData(data)
     }
     const options = {
         loop: true,
@@ -59,7 +27,7 @@ const MyRecommendations = () => {
     };
     return (
         <div className="max-w-[1140px] mx-auto">
-            <h3 className="text-3xl  border-b-4 pb-5 border-[#669bbc] my-5 font-sedan font-semibold">Your Recommendations</h3>
+            <h3 className="text-3xl my-5 border-b-4 pb-5 border-[#669bbc]  font-sedan font-semibold mb-5">All The Recommendations of your queries</h3>
             <div className="overflow-x-auto my-5">
                 <table className="table">
                     {/* head */}
@@ -69,13 +37,13 @@ const MyRecommendations = () => {
                             <th>Product/Title</th>
                             <th>Product</th>
                             <th>Boycotted Product</th>
-                            <th></th>
+                            <th>Recommender</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
                         {
-                            recommendations.map(data =>
+                            recData.map(data =>
                                 <tr key={data._id}>
                                     <td>
                                         <div className="flex items-center gap-3">
@@ -94,14 +62,13 @@ const MyRecommendations = () => {
                                         {data?.recProduct}
                                     </td>
                                     <td>{data?.product}</td>
-                                    <th>
-                                        <button onClick={() => handleDelete(data?.queryId, data?._id)} className="btn primary-bg  text-white"><MdDeleteForever className="text-2xl " /> Delete</button>
+                                    <th> {data?.recName}
                                     </th>
                                 </tr>
                             )
                         }
                         {
-                            recommendations?.length === 0 && <div className="hero col-span-3">
+                            recData?.length === 0 && <div className="hero col-span-3">
                                 <div className="hero-content flex-col lg:flex-row">
                                     <Lottie
                                         options={options}
@@ -109,9 +76,7 @@ const MyRecommendations = () => {
                                         width={400}
                                     />
                                     <div>
-                                        <h1 className="text-3xl font-inter font-bold"><span className='text-red-600 text-4xl'>Oops!</span> You didn&apos;t recommend anyone</h1>
-                                        <p className="py-6">Click Here to see some queries</p>
-                                        <Link to='/queries'><button className="btn  primary-bg text-white">Queries</button></Link>
+                                        <h1 className="text-3xl font-inter font-bold"> You didn&apos;t get any recommendations yet</h1>
                                     </div>
                                 </div>
                             </div>
@@ -123,4 +88,4 @@ const MyRecommendations = () => {
     );
 };
 
-export default MyRecommendations;
+export default RecommendationsForMe;

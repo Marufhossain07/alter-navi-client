@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
-    const {user,logOut} = useAuth()
+    const { user, logOut } = useAuth()
 
 
     useEffect(() => {
@@ -27,10 +27,10 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/queries">Queries</NavLink></li>
         {
-            user &&  <><li><NavLink to="/recommendations-for-me">Recommendations
-            For Me</NavLink></li>
-        <li><NavLink to="/my-queries">My Queries</NavLink></li>
-        <li><NavLink to="/my-recommendations">My Recommendations</NavLink></li></>
+            user && <><li><NavLink to="/recommendations-for-me">Recommendations
+                For Me</NavLink></li>
+                <li><NavLink to="/my-queries">My Queries</NavLink></li>
+                <li><NavLink to="/my-recommendations">My Recommendations</NavLink></li></>
         }
     </>
     return (
@@ -66,7 +66,24 @@ const Navbar = () => {
 
                     </label>
                     {
-                        user? <><a onClick={logOut} className="btn text-white px-5 font-semibold primary-bg">Logout</a></> : <Link to="/login"><a className="btn text-white px-5 font-semibold primary-bg">Login</a></Link>
+                        user ?
+
+                            <>
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10  ring ring-[#669bbc] rounded-full">
+                                            <img className="" alt="User Image" src={user?.photoURL} />
+                                        </div>
+                                    </div>
+                                    <ul tabIndex={0} className="mt-3 z-10 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                        <li> <p>{user?.displayName}</p>
+                                        </li>
+                                        <li><button onClick={logOut} className="btn primary-bg text-white">Logout</button></li>
+                                    </ul>
+                                </div>
+                            </>
+                            :
+                            <Link to="/login"><button className='btn border-none primary-bg font-inter text-white'>Login</button></Link>
                     }
                 </div>
             </div>
