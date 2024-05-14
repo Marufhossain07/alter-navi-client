@@ -19,7 +19,7 @@ const Banner = () => {
                 }}
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="mySwiper h-[440px] mt-10"
+                className="mySwiper mt-10"
             >
                 <SwiperSlide className='banner1 rounded-lg'><div className='text-left space-y-5 px-20 py-20'>
                     <h3 className='text-5xl text-black  font-sedan font-semibold'>Explore a World of Questions <br /> and <Typewriter
@@ -36,7 +36,7 @@ const Banner = () => {
                     <Link to='/queries'><button className="btn border-none primary-bg font-inter mt-5 text-white">View Queries</button></Link>
                 </div></SwiperSlide>
                 <SwiperSlide className='banner2 rounded-lg'><div className='text-left space-y-5 px-20 py-20'>
-                    <h3 className='text-5xl text-black  font-sedan font-semibold'>Uncover a World of  <br /> <Typewriter
+                    <h3 className=' text-5xl text-black  font-sedan font-semibold'>Uncover a World of  <br /> <Typewriter
                         words={['Curiosity', 'Interest', 'Inquiry', 'Exploration!']}
                         loop={10}
                         cursor

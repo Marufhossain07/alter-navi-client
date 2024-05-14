@@ -41,7 +41,7 @@ const Newsletter = () => {
                         <Lottie
                         options={options}
                         height={200}
-                        width={450}
+                        width={400}
                     />
                         </div>
                     </div>

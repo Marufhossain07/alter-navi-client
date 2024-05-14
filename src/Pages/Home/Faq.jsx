@@ -16,7 +16,7 @@ const Faq = () => {
             <div className="hero rounded-lg my-10 bg-base-200">
                 
 
-                <div className="hero-content flex-col lg:flex-row">
+                <div className="flex items-center p-0 md:p-5 lg:p-5 flex-col lg:flex-row">
                     <Lottie
                         options={options}
                         height={400}
