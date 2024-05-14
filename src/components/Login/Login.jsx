@@ -20,7 +20,7 @@ const Login = () => {
         signIn(email, password)
             .then( result => {
                  axiosCommon.post('/jwt', { email: result.user.email })
-                toast('Successfully Sign Up')
+                toast('Successfully Sign In')
                 setTimeout(() => {
                     navigate(location?.state ? location.state : '/')
                 }, 2000)
@@ -44,6 +44,10 @@ const Login = () => {
         googleSignIn()
         .then(async res=>{
             const {data} = await axiosCommon.post('/jwt', {email: res?.user?.email})
+            toast('Successfully Sign In')
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : '/')
+                }, 2000)
         })
     }
 

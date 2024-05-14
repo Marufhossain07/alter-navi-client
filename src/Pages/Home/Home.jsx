@@ -3,6 +3,7 @@ import Banner from "./Banner/Banner";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import Query from "./Query";
 import Newsletter from "./Newsletter";
+import Faq from "./Faq";
 
 const Home = () => {
     const [queries, setQueries] = useState([])
@@ -26,6 +27,9 @@ const Home = () => {
                 </div>
                 <div>
                     <Newsletter></Newsletter>
+                </div>
+                <div>
+                    <Faq></Faq>
                 </div>
             </div>
         </div>
