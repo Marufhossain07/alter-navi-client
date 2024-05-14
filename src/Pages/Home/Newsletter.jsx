@@ -1,10 +1,19 @@
-
+import Lottie from "react-lottie";
+import newsletter from '../../lotties/newsletter.json'
 
 const Newsletter = () => {
+    const options = {
+        loop: true,
+        autoplay: true,
+        animationData: newsletter,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
     return (
-        <div className='mt-10'>
+        <div className='mt-10 border-b-4 border-blue-500'>
             <header className="bg-white dark:bg-gray-900">
-                <nav className="border-t-4 border-blue-500">
+                <nav className="border-t-4  border-blue-500">
                     <div className="container flex items-center justify-between px-6 py-3 mx-auto">
 
                     </div>
@@ -28,8 +37,12 @@ const Newsletter = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                            <img className="w-full h-full max-w-md" src="https://merakiui.com/images/components/Email-campaign-bro.svg" alt="email illustration vector art" />
+                        <div className="mt-6 ">
+                        <Lottie
+                        options={options}
+                        height={200}
+                        width={450}
+                    />
                         </div>
                     </div>
                 </div>
