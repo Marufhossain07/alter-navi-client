@@ -4,7 +4,7 @@
 
 **Project Overview:** AlterNavi helps users discover alternative products through user-generated queries and recommendations. Easily search for products, view detailed information, and contribute by adding or updating queries and recommendations.
 
-### Featured Categories:
+### Features:
 
 - **User Query Management:**
   - *Add/Update/Delete Queries:* Empower users to contribute by adding, updating, or deleting their queries about products within the system.
