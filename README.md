@@ -15,11 +15,11 @@
 - **User Recommendations:**
   - *Add Recommendations:* Users have the ability to share their recommendations for specific products, enriching the database with diverse insights.
 
-- **User Control:**
-  - *Delete Recommendations:* Allow users to manage their recommendations by deleting them as needed.
-
-- **Search Product Feature:**
-  - *Efficient Product Search:* Enable users to swiftly search for products of interest within the system, streamlining the browsing experience.
+   ## Technologies
+- Frontend: React, Router DOM, Tailwind CSS, DaisyUi, MambaUi
+- Backend: Node JS, Express JS
+- Authentication: Firebase
+- Database: MongoDB
 
 ## To Run This Project Locally,follow these steps
 
