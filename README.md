@@ -20,3 +20,15 @@
 
 - **Search Product Feature:**
   - *Efficient Product Search:* Enable users to swiftly search for products of interest within the system, streamlining the browsing experience.
+
+## To Run This Project Locally,follow these steps
+
+```sh
+git clone [use my code link]
+```
+```sh
+npm i
+```
+```sh
+npm run dev
+```
