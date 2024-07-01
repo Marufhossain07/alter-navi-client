@@ -2,7 +2,7 @@
 
 **Live Site URL:** [AlterNavi](https://alter-navi.web.app/)
 
-**Project Overview: AlterNavi helps users discover alternative products through user-generated queries and recommendations. Easily search for products, view detailed information, and contribute by adding or updating queries and recommendations.
+**Project Overview:** AlterNavi helps users discover alternative products through user-generated queries and recommendations. Easily search for products, view detailed information, and contribute by adding or updating queries and recommendations.
 
 ### Featured Categories:
 
